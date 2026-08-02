@@ -22,8 +22,8 @@ function Sidebar() {
     { name: "Quarterly", path: "/quarterly", icon: <FileBarChart size={20} /> },
     { name: "AI Chat", path: "/chat", icon: <Bot size={20} /> },
     { name: "Risk", path: "/risk", icon: <ShieldAlert size={20} /> },
-    { name: "News", path: "/news", icon: <Newspaper size={20} /> },
-    { name: "Watchlist", path: "/watchlist", icon: <Star size={20} /> },
+    //{ name: "News", path: "/news", icon: <Newspaper size={20} /> },
+    //{ name: "Watchlist", path: "/watchlist", icon: <Star size={20} /> },
     { name: "Profile", path: "/profile", icon: <User size={20} /> },
   ];
 
