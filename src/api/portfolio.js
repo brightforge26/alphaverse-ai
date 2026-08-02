@@ -1,18 +1,21 @@
-import axios from "axios";
+import axiosClient from "./axiosClient";
 
-const API = "http://localhost:5000/api/portfolio";
+// Get Portfolio
+export const getPortfolio = () =>
+  axiosClient.get("/portfolio");
 
-export const getPortfolio = () => axios.get(API);
-
+// Add Stock
 export const addPortfolio = (data) =>
-  axios.post(`${API}/add`, data);
+  axiosClient.post("/portfolio/add", data);
 
+// Update Stock
 export const updatePortfolio = (id, data) =>
-  axios.put(`${API}/${id}`, data);
+  axiosClient.put(`/portfolio/${id}`, data);
 
+// Delete Stock
 export const deletePortfolio = (id) =>
-  axios.delete(`${API}/${id}`);
+  axiosClient.delete(`/portfolio/${id}`);
 
-// ✅ ADD THIS
+// Search Stocks
 export const searchStocks = (query) =>
-  axios.get(`${API}/search?query=${query}`);
+  axiosClient.get(`/portfolio/search?query=${query}`);
