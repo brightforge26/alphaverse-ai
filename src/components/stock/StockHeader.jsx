@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { TrendingUp, TrendingDown } from "lucide-react";
 import { getStock } from "../../api/stock";
-
 function StockHeader({ symbol }) {
   const [stock, setStock] = useState(null);
 

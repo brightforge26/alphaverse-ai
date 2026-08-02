@@ -1,20 +1,8 @@
 import axiosClient from "./axiosClient";
 
-// Get Portfolio
-export const getPortfolio = () =>
-  axiosClient.get("/portfolio");
-
-// Add Stock
-export const addPortfolio = (data) =>
-  axiosClient.post("/portfolio/add", data);
-
-// Update Stock
-export const updatePortfolio = (id, data) =>
-  axiosClient.put(`/portfolio/${id}`, data);
-
-// Delete Stock
-export const deletePortfolio = (id) =>
-  axiosClient.delete(`/portfolio/${id}`);
+// Get Live Stock
+export const getStock = (symbol) =>
+  axiosClient.get(`/stock/${encodeURIComponent(symbol)}`);
 
 // Search Stocks
 export const searchStocks = (query) =>
