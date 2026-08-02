@@ -1,14 +1,18 @@
 import axios from "axios";
 
-const API = axios.create({
-  baseURL: "http://localhost:5000/api/portfolio",
-});
+const API = "http://localhost:5000/api/portfolio";
 
-export const addPortfolio = (data) => API.post("/add", data);
+export const getPortfolio = () => axios.get(API);
 
-export const getPortfolio = () => API.get("/");
-
-export const deletePortfolio = (id) => API.delete(`/${id}`);
+export const addPortfolio = (data) =>
+  axios.post(`${API}/add`, data);
 
 export const updatePortfolio = (id, data) =>
-  API.put(`/${id}`, data);
+  axios.put(`${API}/${id}`, data);
+
+export const deletePortfolio = (id) =>
+  axios.delete(`${API}/${id}`);
+
+// ✅ ADD THIS
+export const searchStocks = (query) =>
+  axios.get(`${API}/search?query=${query}`);

@@ -7,14 +7,22 @@ const {
   getPortfolio,
   updatePortfolio,
   deletePortfolio,
+  searchStocks,
 } = require("../controllers/portfolioController");
 
-router.post("/add", addPortfolio);
+// Search
+router.get("/search", searchStocks);
 
+// Get Portfolio
 router.get("/", getPortfolio);
 
+// Add
+router.post("/add", addPortfolio);
+
+// Update
 router.put("/:id", updatePortfolio);
 
+// Delete
 router.delete("/:id", deletePortfolio);
 
 module.exports = router;

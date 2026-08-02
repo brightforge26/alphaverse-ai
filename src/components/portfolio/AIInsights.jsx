@@ -11,7 +11,7 @@ function AIInsights() {
   const generateInsights = async () => {
     try {
       const response = await getPortfolio();
-      const portfolio = response.data.data;
+      const portfolio = response.data.data || [];
 
       if (portfolio.length === 0) {
         setInsights([
@@ -62,22 +62,18 @@ function AIInsights() {
           100
         ).toFixed(1);
 
-        if (percent > highestPercent) {
-          highestPercent = percent;
+        if (Number(percent) > highestPercent) {
+          highestPercent = Number(percent);
           highestSector = sector;
         }
       });
 
       const ai = [];
 
-      ai.push("✅ Portfolio contains " + portfolio.length + " holdings.");
+      ai.push(`✅ Portfolio contains ${portfolio.length} holdings.`);
 
       ai.push(
-        "📈 Highest allocation is " +
-          highestSector +
-          " (" +
-          highestPercent +
-          "%)."
+        `📈 Highest allocation is ${highestSector} (${highestPercent}%).`
       );
 
       if (highestPercent > 50) {
@@ -88,7 +84,7 @@ function AIInsights() {
         ai.push("✅ Portfolio appears reasonably diversified.");
       }
 
-      ai.push("🏆 Best performing stock: " + bestStock);
+      ai.push(`🏆 Best performing stock: ${bestStock}`);
 
       ai.push(
         "💡 AI Suggestion: Continue monitoring market trends and diversify if necessary."
@@ -101,25 +97,33 @@ function AIInsights() {
   };
 
   return (
-    <div className="bg-slate-900 rounded-2xl p-6">
-
+    <div
+      style={{
+        background: "var(--card)",
+        color: "var(--text)",
+        borderColor: "var(--border)",
+      }}
+      className="border rounded-2xl p-6 shadow-lg transition-all duration-300"
+    >
       <h2 className="text-2xl font-bold mb-6">
         🤖 AI Portfolio Insights
       </h2>
 
       <div className="space-y-4">
-
         {insights.map((item, index) => (
           <div
             key={index}
-            className="bg-slate-800 rounded-xl p-4"
+            style={{
+              background: "var(--card2)",
+              borderColor: "var(--border)",
+              color: "var(--text)",
+            }}
+            className="border rounded-xl p-4 transition-all duration-300 hover:scale-[1.02]"
           >
             {item}
           </div>
         ))}
-
       </div>
-
     </div>
   );
 }

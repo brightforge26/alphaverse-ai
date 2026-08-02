@@ -29,36 +29,47 @@ const watchlist = [
 
 function WatchlistPreview() {
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-
+    <div
+      style={{
+        background: "var(--card)",
+        borderColor: "var(--border)",
+        color: "var(--text)",
+      }}
+      className="border rounded-2xl p-6 transition-all duration-300"
+    >
       <h2 className="text-2xl font-bold mb-5">
         ⭐ Watchlist
       </h2>
 
       <div className="space-y-4">
-
         {watchlist.map((stock) => (
-
           <div
             key={stock.symbol}
-            className="flex justify-between items-center bg-slate-800 rounded-xl p-4 hover:bg-slate-700 transition"
+            style={{
+              background: "var(--card2)",
+            }}
+            className="flex justify-between items-center rounded-xl p-4 transition-all duration-300 hover:scale-[1.02]"
           >
-
             <div>
-
               <h3 className="font-semibold">
                 {stock.symbol}
               </h3>
 
-              <p className="text-slate-400">
+              <p
+                style={{
+                  color: "var(--text)",
+                  opacity: 0.7,
+                }}
+              >
                 {stock.price}
               </p>
-
             </div>
 
             <div
               className={`flex items-center gap-2 ${
-                stock.positive ? "text-green-400" : "text-red-400"
+                stock.positive
+                  ? "text-green-400"
+                  : "text-red-400"
               }`}
             >
               {stock.positive ? (
@@ -68,15 +79,10 @@ function WatchlistPreview() {
               )}
 
               <span>{stock.change}</span>
-
             </div>
-
           </div>
-
         ))}
-
       </div>
-
     </div>
   );
 }

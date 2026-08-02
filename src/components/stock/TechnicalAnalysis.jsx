@@ -1,52 +1,86 @@
+import {
+  TrendingUp,
+  Activity,
+  BarChart3,
+} from "lucide-react";
+
 function TechnicalAnalysis() {
-
   const indicators = [
-
-    ["RSI","62","Bullish"],
-
-    ["MACD","Positive","Bullish"],
-
-    ["50 DMA","Above","Strong"],
-
-    ["200 DMA","Above","Bullish"],
-
-    ["Volume","High","Positive"]
-
+    ["RSI", "62", "Bullish"],
+    ["MACD", "Positive", "Bullish"],
+    ["50 DMA", "Above", "Strong"],
+    ["200 DMA", "Above", "Bullish"],
+    ["Volume", "High", "Positive"],
   ];
 
   return (
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-lg">
 
-    <div className="bg-slate-900 rounded-2xl border border-slate-800 p-6">
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-6">
 
-      <h2 className="text-2xl font-bold mb-6">
-        Technical Indicators
-      </h2>
+        <Activity
+          className="text-cyan-500"
+          size={28}
+        />
 
-      {indicators.map((item,index)=>(
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+          Technical Indicators
+        </h2>
 
-        <div
-          key={index}
-          className="flex justify-between border-b border-slate-700 py-4"
-        >
+      </div>
 
-          <span>{item[0]}</span>
+      {/* Indicators */}
+      <div className="space-y-4">
 
-          <span>{item[1]}</span>
+        {indicators.map((item, index) => (
 
-          <span className="text-green-400">
+          <div
+            key={index}
+            className="flex justify-between items-center bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-300"
+          >
 
-            {item[2]}
+            {/* Indicator */}
+            <div className="flex items-center gap-3">
 
-          </span>
+              <BarChart3
+                size={20}
+                className="text-cyan-500"
+              />
 
-        </div>
+              <span className="font-semibold text-slate-900 dark:text-white">
+                {item[0]}
+              </span>
 
-      ))}
+            </div>
+
+            {/* Value */}
+            <span className="font-semibold text-slate-700 dark:text-slate-300">
+              {item[1]}
+            </span>
+
+            {/* Status */}
+            <div className="flex items-center gap-2">
+
+              <TrendingUp
+                size={18}
+                className="text-green-500"
+              />
+
+              <span className="font-semibold text-green-500">
+                {item[2]}
+              </span>
+
+            </div>
+
+          </div>
+
+        ))}
+
+      </div>
 
     </div>
-
   );
-
 }
 
 export default TechnicalAnalysis;

@@ -20,10 +20,11 @@ const data = [
 
 function PriceChart() {
   return (
-    <div className="bg-slate-900 rounded-2xl border border-slate-800 p-6 h-96">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 h-96 shadow-lg">
 
-      <h2 className="text-2xl font-bold mb-5">
-        Price Movement
+      {/* Header */}
+      <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-5">
+        📈 Price Movement
       </h2>
 
       <ResponsiveContainer width="100%" height="85%">
@@ -31,23 +32,53 @@ function PriceChart() {
 
           <defs>
 
-            <linearGradient id="stockChart" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient
+              id="stockChart"
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1"
+            >
+              <stop
+                offset="5%"
+                stopColor="#22C55E"
+                stopOpacity={0.8}
+              />
 
-              <stop offset="5%" stopColor="#22C55E" stopOpacity={0.8} />
-
-              <stop offset="95%" stopColor="#22C55E" stopOpacity={0} />
-
+              <stop
+                offset="95%"
+                stopColor="#22C55E"
+                stopOpacity={0}
+              />
             </linearGradient>
 
           </defs>
 
-          <CartesianGrid stroke="#1e293b" />
+          <CartesianGrid
+            stroke="currentColor"
+            className="text-slate-200 dark:text-slate-700"
+            strokeDasharray="3 3"
+          />
 
-          <XAxis dataKey="day"/>
+          <XAxis
+            dataKey="day"
+            stroke="currentColor"
+            className="text-slate-600 dark:text-slate-300"
+          />
 
-          <YAxis/>
+          <YAxis
+            stroke="currentColor"
+            className="text-slate-600 dark:text-slate-300"
+          />
 
-          <Tooltip/>
+          <Tooltip
+            contentStyle={{
+              backgroundColor: "#0f172a",
+              border: "1px solid #334155",
+              borderRadius: "12px",
+              color: "#fff",
+            }}
+          />
 
           <Area
             type="monotone"

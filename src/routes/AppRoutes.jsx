@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+
 import ProtectedRoute from "../components/ProtectedRoute";
 
 import Login from "../pages/Login";
@@ -16,16 +22,34 @@ import Profile from "../pages/Profile";
 function AppRoutes() {
   return (
     <BrowserRouter>
+
       <Routes>
 
-        {/* Redirect Home */}
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        {/* ===========================
+            Redirect Home
+        ============================ */}
+        <Route
+          path="/"
+          element={<Navigate to="/login" replace />}
+        />
 
-        {/* Public Routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        {/* ===========================
+            Public Routes
+        ============================ */}
 
-        {/* Protected Routes */}
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+
+        <Route
+          path="/register"
+          element={<Register />}
+        />
+
+        {/* ===========================
+            Protected Routes
+        ============================ */}
 
         <Route
           path="/dashboard"
@@ -45,8 +69,10 @@ function AppRoutes() {
           }
         />
 
+        {/* ✅ Dynamic Stock Details */}
+
         <Route
-          path="/stock"
+          path="/stocks/:symbol"
           element={
             <ProtectedRoute>
               <StockDetails />
@@ -108,10 +134,17 @@ function AppRoutes() {
           }
         />
 
-        {/* Unknown Route */}
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        {/* ===========================
+            Unknown Route
+        ============================ */}
+
+        <Route
+          path="*"
+          element={<Navigate to="/dashboard" replace />}
+        />
 
       </Routes>
+
     </BrowserRouter>
   );
 }

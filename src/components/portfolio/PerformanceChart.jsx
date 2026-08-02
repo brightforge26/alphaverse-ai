@@ -22,8 +22,6 @@ function PerformanceChart() {
     try {
       const res = await getPortfolio();
 
-      console.log("Portfolio Response:", res.data);
-
       const portfolio = res.data.data || [];
 
       const data = portfolio.map((stock) => ({
@@ -37,8 +35,6 @@ function PerformanceChart() {
           Number(stock.quantity || 0),
       }));
 
-      console.log("Chart Data:", data);
-
       setChartData(data);
     } catch (err) {
       console.log(err);
@@ -46,13 +42,26 @@ function PerformanceChart() {
   };
 
   return (
-    <div className="bg-slate-900 rounded-2xl p-6 h-96">
+    <div
+      style={{
+        background: "var(--card)",
+        color: "var(--text)",
+        borderColor: "var(--border)",
+      }}
+      className="border rounded-2xl p-6 h-96 shadow-lg transition-all duration-300"
+    >
       <h2 className="text-2xl font-bold mb-5">
         Portfolio Performance
       </h2>
 
       {chartData.length === 0 ? (
-        <div className="flex justify-center items-center h-72 text-gray-400">
+        <div
+          className="flex justify-center items-center h-72"
+          style={{
+            color: "var(--text)",
+            opacity: 0.6,
+          }}
+        >
           No Portfolio Data
         </div>
       ) : (
@@ -79,18 +88,25 @@ function PerformanceChart() {
               </linearGradient>
             </defs>
 
-            <CartesianGrid stroke="#334155" />
+            <CartesianGrid stroke="var(--border)" />
 
             <XAxis
               dataKey="stock"
-              stroke="#ffffff"
+              stroke="var(--text)"
             />
 
             <YAxis
-              stroke="#ffffff"
+              stroke="var(--text)"
             />
 
-            <Tooltip />
+            <Tooltip
+              contentStyle={{
+                background: "var(--card2)",
+                border: "1px solid var(--border)",
+                borderRadius: "12px",
+                color: "var(--text)",
+              }}
+            />
 
             <Area
               dataKey="current"

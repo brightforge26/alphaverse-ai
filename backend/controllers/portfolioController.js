@@ -161,3 +161,39 @@ exports.deletePortfolio = async (req, res) => {
     });
   }
 };
+// ==========================
+// Search Stocks
+// ==========================
+exports.searchStocks = async (req, res) => {
+  try {
+    const query = req.query.query;
+
+    if (!query) {
+      return res.json({
+        success: true,
+        data: [],
+      });
+    }
+
+    const { data, error } = await supabase
+      .from("portfolio")
+      .select("symbol, stock_name")
+      .or(`symbol.ilike.%${query}%,stock_name.ilike.%${query}%`)
+      .limit(10);
+
+    if (error) throw error;
+
+    res.json({
+      success: true,
+      data,
+    });
+
+  } catch (err) {
+    console.error(err);
+
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};

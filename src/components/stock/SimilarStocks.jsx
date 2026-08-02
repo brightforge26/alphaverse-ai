@@ -1,3 +1,5 @@
+import { TrendingUp } from "lucide-react";
+
 const stocks = [
   {
     name: "TCS",
@@ -23,9 +25,10 @@ const stocks = [
 
 function SimilarStocks() {
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-lg">
 
-      <h2 className="text-2xl font-bold mb-5">
+      {/* Header */}
+      <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
         ⭐ Similar Stocks
       </h2>
 
@@ -34,23 +37,34 @@ function SimilarStocks() {
         {stocks.map((stock) => (
 
           <div
-  key={stock.name}
-  className="grid grid-cols-3 items-center bg-slate-800 rounded-xl p-4 hover:bg-slate-700 transition"
->
+            key={stock.name}
+            className="grid grid-cols-3 items-center bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-300"
+          >
 
-  <span className="font-medium">
-    {stock.name}
-  </span>
+            {/* Stock Name */}
+            <div>
+              <h3 className="font-semibold text-slate-900 dark:text-white">
+                {stock.name}
+              </h3>
+            </div>
 
-  <span className="text-center">
-    {stock.price}
-  </span>
+            {/* Price */}
+            <div className="text-center">
+              <span className="font-medium text-slate-700 dark:text-slate-300">
+                {stock.price}
+              </span>
+            </div>
 
-  <span className="text-right text-green-400 font-semibold">
-    {stock.change}
-  </span>
+            {/* Change */}
+            <div className="flex justify-end items-center gap-2 text-green-500 font-semibold">
 
-</div>
+              <TrendingUp size={18} />
+
+              <span>{stock.change}</span>
+
+            </div>
+
+          </div>
 
         ))}
 

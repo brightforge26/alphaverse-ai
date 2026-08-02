@@ -27,23 +27,40 @@ const transactions = [
 
 function RecentTransactions() {
   return (
-    <div className="bg-slate-900 rounded-2xl p-6 border border-slate-800">
-
+    <div
+      style={{
+        background: "var(--card)",
+        color: "var(--text)",
+        borderColor: "var(--border)",
+      }}
+      className="rounded-2xl p-6 border shadow-lg transition-all duration-300"
+    >
       <h2 className="text-2xl font-bold mb-6">
         Recent Transactions
       </h2>
 
       {/* Table Header */}
-      <div className="grid grid-cols-4 text-slate-400 text-sm font-semibold border-b border-slate-700 pb-3 mb-3">
-
+      <div
+        style={{
+          color: "var(--text)",
+          borderColor: "var(--border)",
+          opacity: 0.7,
+        }}
+        className="grid grid-cols-4 text-sm font-semibold border-b pb-3 mb-3"
+      >
         <span>Stock</span>
 
-        <span className="text-center">Action</span>
+        <span className="text-center">
+          Action
+        </span>
 
-        <span className="text-center">Amount</span>
+        <span className="text-center">
+          Amount
+        </span>
 
-        <span className="text-right">Date</span>
-
+        <span className="text-right">
+          Date
+        </span>
       </div>
 
       {/* Rows */}
@@ -53,7 +70,12 @@ function RecentTransactions() {
 
           <div
             key={index}
-            className="grid grid-cols-4 items-center bg-slate-800 rounded-xl p-4 hover:bg-slate-700 transition"
+            style={{
+              background: "var(--card2)",
+              color: "var(--text)",
+              borderColor: "var(--border)",
+            }}
+            className="grid grid-cols-4 items-center rounded-xl p-4 border transition-all duration-300 hover:scale-[1.01]"
           >
 
             <span className="font-medium">
@@ -74,7 +96,13 @@ function RecentTransactions() {
               {item.amount}
             </span>
 
-            <span className="text-right text-slate-400">
+            <span
+              className="text-right"
+              style={{
+                color: "var(--text)",
+                opacity: 0.7,
+              }}
+            >
               {item.date}
             </span>
 

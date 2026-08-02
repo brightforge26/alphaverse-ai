@@ -18,8 +18,6 @@ function PortfolioSummary() {
     try {
       const res = await getPortfolio();
 
-      console.log("Portfolio Data:", res.data);
-
       const stocks = res.data.data || [];
 
       let portfolioValue = 0;
@@ -33,21 +31,13 @@ function PortfolioSummary() {
         portfolioValue += current * qty;
         investment += buy * qty;
       });
+
       const profit = portfolioValue - investment;
 
-// Temporary
-const todayGain = profit;
+      let risk = "High";
 
-// Better Risk Logic
-let risk = "High";
-
-if (stocks.length >= 3) {
-  risk = "Medium";
-}
-
-if (stocks.length >= 5) {
-  risk = "Low";
-}
+      if (stocks.length >= 3) risk = "Medium";
+      if (stocks.length >= 5) risk = "Low";
 
       setSummary({
         portfolioValue,
@@ -56,7 +46,6 @@ if (stocks.length >= 5) {
         todayGain: profit,
         risk,
       });
-
     } catch (err) {
       console.error(err);
     }
@@ -65,25 +54,72 @@ if (stocks.length >= 5) {
   return (
     <div className="grid md:grid-cols-4 gap-5">
 
-      <div className="bg-slate-900 p-6 rounded-2xl">
-        <p className="text-slate-400">Portfolio Value</p>
-        <h2 className="text-3xl font-bold">
+      {/* Portfolio Value */}
+      <div
+        style={{
+          background: "var(--card)",
+          color: "var(--text)",
+          borderColor: "var(--border)",
+        }}
+        className="border p-6 rounded-2xl shadow-lg transition-all duration-300"
+      >
+        <p
+          style={{
+            color: "var(--text)",
+            opacity: 0.7,
+          }}
+        >
+          Portfolio Value
+        </p>
+
+        <h2 className="text-3xl font-bold mt-2">
           ₹{summary.portfolioValue.toLocaleString()}
         </h2>
       </div>
 
-      <div className="bg-slate-900 p-6 rounded-2xl">
-        <p className="text-slate-400">Investment</p>
-        <h2 className="text-3xl font-bold text-cyan-400">
+      {/* Investment */}
+      <div
+        style={{
+          background: "var(--card)",
+          color: "var(--text)",
+          borderColor: "var(--border)",
+        }}
+        className="border p-6 rounded-2xl shadow-lg transition-all duration-300"
+      >
+        <p
+          style={{
+            color: "var(--text)",
+            opacity: 0.7,
+          }}
+        >
+          Investment
+        </p>
+
+        <h2 className="text-3xl font-bold text-cyan-400 mt-2">
           ₹{summary.investment.toLocaleString()}
         </h2>
       </div>
 
-      <div className="bg-slate-900 p-6 rounded-2xl">
-        <p className="text-slate-400">Profit / Loss</p>
+      {/* Profit */}
+      <div
+        style={{
+          background: "var(--card)",
+          color: "var(--text)",
+          borderColor: "var(--border)",
+        }}
+        className="border p-6 rounded-2xl shadow-lg transition-all duration-300"
+      >
+        <p
+          style={{
+            color: "var(--text)",
+            opacity: 0.7,
+          }}
+        >
+          Profit / Loss
+        </p>
 
         <h2
-          className={`text-3xl font-bold ${
+          className={`text-3xl font-bold mt-2 ${
             summary.profit >= 0
               ? "text-green-400"
               : "text-red-400"
@@ -93,10 +129,25 @@ if (stocks.length >= 5) {
         </h2>
       </div>
 
-      <div className="bg-slate-900 p-6 rounded-2xl">
-        <p className="text-slate-400">Risk Score</p>
+      {/* Risk */}
+      <div
+        style={{
+          background: "var(--card)",
+          color: "var(--text)",
+          borderColor: "var(--border)",
+        }}
+        className="border p-6 rounded-2xl shadow-lg transition-all duration-300"
+      >
+        <p
+          style={{
+            color: "var(--text)",
+            opacity: 0.7,
+          }}
+        >
+          Risk Score
+        </p>
 
-        <h2 className="text-3xl text-yellow-400 font-bold">
+        <h2 className="text-3xl font-bold text-yellow-400 mt-2">
           {summary.risk}
         </h2>
       </div>

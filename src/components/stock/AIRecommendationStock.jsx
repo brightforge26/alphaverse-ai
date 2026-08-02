@@ -39,9 +39,6 @@ function AIRecommendationStock() {
     }
   };
 
-  // -----------------------------
-  // Extract AI response
-  // -----------------------------
   const getValue = (label, nextLabel) => {
     if (!recommendation) return "";
 
@@ -89,62 +86,73 @@ function AIRecommendationStock() {
     )
     .filter(Boolean);
 
-  // -----------------------------
-  // Loading
-  // -----------------------------
+  // ---------------- Loading ----------------
+
   if (loading) {
     return (
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-lg">
 
         <div className="flex items-center gap-3 mb-6">
-          <Brain className="text-cyan-400" size={30} />
+          <Brain className="text-cyan-500" size={30} />
 
-          <h2 className="text-2xl font-bold">
-            AlphaVerse AI Recommendation
-          </h2>
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+              AlphaVerse AI Recommendation
+            </h2>
+
+            <p className="text-sm text-slate-500 dark:text-slate-400">
+              Powered by Gemini AI
+            </p>
+          </div>
         </div>
 
         <div className="flex items-center justify-center py-16">
+
           <div className="text-center">
 
             <Loader2
-              className="animate-spin text-cyan-400 mx-auto mb-4"
+              className="animate-spin text-cyan-500 mx-auto mb-4"
               size={40}
             />
 
-            <p className="text-slate-400">
+            <p className="text-slate-600 dark:text-slate-400">
               Gemini AI is analyzing your portfolio...
             </p>
 
           </div>
+
         </div>
 
       </div>
     );
   }
 
-  // -----------------------------
-  // Error
-  // -----------------------------
+  // ---------------- Error ----------------
+
   if (error) {
     return (
-      <div className="bg-slate-900 border border-red-500/30 rounded-2xl p-6">
+      <div className="bg-white dark:bg-slate-900 border border-red-300 dark:border-red-500/30 rounded-2xl p-6 shadow-lg">
 
         <div className="flex items-center gap-3 mb-4">
-          <Brain className="text-red-400" size={30} />
 
-          <h2 className="text-2xl font-bold">
+          <Brain
+            className="text-red-500"
+            size={30}
+          />
+
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
             AlphaVerse AI Recommendation
           </h2>
+
         </div>
 
-        <p className="text-red-400">
+        <p className="text-red-500">
           {error}
         </p>
 
         <button
           onClick={fetchRecommendation}
-          className="mt-5 bg-cyan-500 hover:bg-cyan-600 px-5 py-2 rounded-lg font-semibold"
+          className="mt-5 bg-cyan-500 hover:bg-cyan-600 text-white px-5 py-2 rounded-lg font-semibold transition"
         >
           Try Again
         </button>
@@ -153,50 +161,53 @@ function AIRecommendationStock() {
     );
   }
 
-  // -----------------------------
-  // Main UI
-  // -----------------------------
+  // ---------------- Main UI ----------------
+
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-lg">
 
       {/* Header */}
+
       <div className="flex items-center gap-3 mb-6">
 
         <Brain
-          className="text-cyan-400"
+          className="text-cyan-500"
           size={30}
         />
 
         <div>
-          <h2 className="text-2xl font-bold">
+
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
             AlphaVerse AI Recommendation
           </h2>
 
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-slate-500 dark:text-slate-400">
             Powered by Gemini AI
           </p>
+
         </div>
 
       </div>
 
       {/* Recommendation */}
-      <div className="bg-cyan-500/10 border border-cyan-500/30 rounded-xl p-5">
+
+      <div className="bg-cyan-100 dark:bg-cyan-500/10 border border-cyan-300 dark:border-cyan-500/30 rounded-xl p-5">
 
         <div className="flex justify-between items-center">
 
           <div>
 
-            <p className="text-slate-400">
+            <p className="text-slate-600 dark:text-slate-400">
               Recommendation
             </p>
 
             <h1
               className={`text-5xl font-bold ${
                 recommendationValue === "BUY"
-                  ? "text-green-400"
+                  ? "text-green-500"
                   : recommendationValue === "SELL"
-                  ? "text-red-400"
-                  : "text-yellow-400"
+                  ? "text-red-500"
+                  : "text-yellow-500"
               }`}
             >
               {recommendationValue}
@@ -206,11 +217,11 @@ function AIRecommendationStock() {
 
           <div className="text-right">
 
-            <p className="text-slate-400">
+            <p className="text-slate-600 dark:text-slate-400">
               Confidence
             </p>
 
-            <h1 className="text-4xl font-bold text-cyan-400">
+            <h1 className="text-4xl font-bold text-cyan-500">
               {confidenceValue}
             </h1>
 
@@ -221,6 +232,7 @@ function AIRecommendationStock() {
       </div>
 
       {/* Reasons */}
+
       <div className="space-y-4 mt-6">
 
         {reasons.map((reason, index) => (
@@ -231,11 +243,11 @@ function AIRecommendationStock() {
           >
 
             <TrendingUp
-              className="text-green-400 mt-1 flex-shrink-0"
+              className="text-green-500 mt-1 flex-shrink-0"
               size={20}
             />
 
-            <p className="text-slate-300">
+            <p className="text-slate-700 dark:text-slate-300">
               {reason}
             </p>
 
@@ -246,20 +258,21 @@ function AIRecommendationStock() {
       </div>
 
       {/* Target Price */}
+
       <div className="flex gap-3 mt-6">
 
         <Target
-          className="text-cyan-400 flex-shrink-0"
+          className="text-cyan-500 flex-shrink-0"
           size={22}
         />
 
         <div>
 
-          <p className="text-slate-400">
+          <p className="text-slate-600 dark:text-slate-400">
             Target Price
           </p>
 
-          <p className="text-slate-200 font-semibold">
+          <p className="text-slate-900 dark:text-slate-200 font-semibold">
             {targetPrice}
           </p>
 
@@ -268,20 +281,21 @@ function AIRecommendationStock() {
       </div>
 
       {/* Risk */}
+
       <div className="flex gap-3 mt-5">
 
         <ShieldCheck
-          className="text-yellow-400 flex-shrink-0"
+          className="text-yellow-500 flex-shrink-0"
           size={22}
         />
 
         <div>
 
-          <p className="text-slate-400">
+          <p className="text-slate-600 dark:text-slate-400">
             Risk
           </p>
 
-          <p className="text-slate-200">
+          <p className="text-slate-900 dark:text-slate-200">
             {risk}
           </p>
 
@@ -290,9 +304,10 @@ function AIRecommendationStock() {
       </div>
 
       {/* Refresh */}
+
       <button
         onClick={fetchRecommendation}
-        className="mt-6 w-full bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-semibold py-3 rounded-xl transition"
+        className="mt-6 w-full bg-cyan-500 hover:bg-cyan-600 text-white dark:text-slate-900 font-semibold py-3 rounded-xl transition"
       >
         🔄 Refresh AI Recommendation
       </button>

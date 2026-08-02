@@ -46,8 +46,14 @@ function HoldingsTable() {
   };
 
   return (
-    <div className="bg-slate-900 rounded-2xl p-6">
-
+    <div
+      style={{
+        background: "var(--card)",
+        color: "var(--text)",
+        borderColor: "var(--border)",
+      }}
+      className="border rounded-2xl p-6 shadow-lg transition-all duration-300"
+    >
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">
@@ -56,7 +62,7 @@ function HoldingsTable() {
 
         <button
           onClick={() => setOpenModal(true)}
-          className="flex items-center gap-2 bg-cyan-500 hover:bg-cyan-600 px-4 py-2 rounded-xl text-white font-semibold"
+          className="flex items-center gap-2 bg-cyan-500 hover:bg-cyan-600 px-4 py-2 rounded-xl text-white font-semibold transition"
         >
           <Plus size={18} />
           Add Stock
@@ -64,9 +70,18 @@ function HoldingsTable() {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[1200px]">
-
-          <thead className="text-slate-400">
+        <table
+          className="w-full min-w-[1200px]"
+          style={{
+            color: "var(--text)",
+          }}
+        >
+          <thead
+            style={{
+              color: "var(--text)",
+              opacity: 0.7,
+            }}
+          >
             <tr>
               <th className="text-left py-3">Stock</th>
               <th className="text-center">Symbol</th>
@@ -87,14 +102,17 @@ function HoldingsTable() {
               <tr>
                 <td
                   colSpan="11"
-                  className="text-center py-10 text-slate-500"
+                  className="text-center py-10"
+                  style={{
+                    color: "var(--text)",
+                    opacity: 0.6,
+                  }}
                 >
                   No Portfolio Data Found
                 </td>
               </tr>
             ) : (
               holdings.map((item) => {
-
                 const investment =
                   Number(item.buy_price) * Number(item.quantity);
 
@@ -112,7 +130,18 @@ function HoldingsTable() {
                 return (
                   <tr
                     key={item.id}
-                    className="border-t border-slate-700 h-16 hover:bg-slate-800 transition"
+                    style={{
+                      borderColor: "var(--border)",
+                    }}
+                    className="border-t h-16 transition-all duration-300"
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.background =
+                        "var(--card2)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.background =
+                        "transparent")
+                    }
                   >
                     <td>{item.stock_name}</td>
 
@@ -169,14 +198,14 @@ function HoldingsTable() {
                     <td className="flex justify-center items-center gap-4 h-16">
                       <button
                         onClick={() => handleEdit(item)}
-                        className="text-cyan-400 hover:text-cyan-300"
+                        className="text-cyan-400 hover:text-cyan-300 transition"
                       >
                         <Pencil size={18} />
                       </button>
 
                       <button
                         onClick={() => handleDelete(item.id)}
-                        className="text-red-500 hover:text-red-400"
+                        className="text-red-500 hover:text-red-400 transition"
                       >
                         <Trash2 size={18} />
                       </button>
@@ -186,7 +215,6 @@ function HoldingsTable() {
               })
             )}
           </tbody>
-
         </table>
       </div>
 
@@ -202,7 +230,6 @@ function HoldingsTable() {
         stock={selectedStock}
         refreshPortfolio={fetchPortfolio}
       />
-
     </div>
   );
 }

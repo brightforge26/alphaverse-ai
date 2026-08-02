@@ -19,8 +19,14 @@ function LatestNews() {
   };
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-
+    <div
+      style={{
+        background: "var(--card)",
+        borderColor: "var(--border)",
+        color: "var(--text)",
+      }}
+      className="border rounded-2xl p-6 transition-all duration-300"
+    >
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
 
@@ -39,7 +45,7 @@ function LatestNews() {
 
       </div>
 
-      {/* Show only first 3 news */}
+      {/* News */}
       <div className="space-y-4">
 
         {news.slice(0, 3).map((item) => (
@@ -49,14 +55,29 @@ function LatestNews() {
             href={item.url}
             target="_blank"
             rel="noreferrer"
-            className="block border border-slate-800 rounded-xl p-4 hover:border-cyan-400 hover:bg-slate-800 transition"
+            style={{
+              background: "var(--card2)",
+              borderColor: "var(--border)",
+            }}
+            className="block border rounded-xl p-4 hover:border-cyan-400 transition-all duration-300 hover:scale-[1.02]"
           >
 
-            <h3 className="font-semibold text-white mb-2 line-clamp-2">
+            <h3
+              className="font-semibold mb-2 line-clamp-2"
+              style={{
+                color: "var(--text)",
+              }}
+            >
               {item.headline}
             </h3>
 
-            <p className="text-slate-400 text-sm line-clamp-2">
+            <p
+              className="text-sm line-clamp-2"
+              style={{
+                color: "var(--text)",
+                opacity: 0.7,
+              }}
+            >
               {item.summary}
             </p>
 
@@ -66,7 +87,13 @@ function LatestNews() {
                 {item.source}
               </span>
 
-              <span className="text-slate-500 text-xs">
+              <span
+                className="text-xs"
+                style={{
+                  color: "var(--text)",
+                  opacity: 0.6,
+                }}
+              >
                 Read →
               </span>
 

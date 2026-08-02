@@ -1,5 +1,4 @@
 function QuarterlySummary() {
-
   const quarters = [
     {
       quarter: "Q1 FY26",
@@ -22,55 +21,75 @@ function QuarterlySummary() {
   ];
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-lg">
 
-      <h2 className="text-2xl font-bold mb-6">
+      {/* Header */}
+      <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
         📑 Quarterly Performance
       </h2>
 
-      <table className="w-full">
+      <div className="overflow-x-auto">
 
-        <thead className="text-slate-400">
+        <table className="w-full">
 
-          <tr>
-            <th className="text-left">Quarter</th>
-            <th>Revenue</th>
-            <th>Profit</th>
-            <th>EPS</th>
-          </tr>
+          <thead>
 
-        </thead>
+            <tr className="border-b border-slate-300 dark:border-slate-700">
 
-        <tbody>
+              <th className="text-left py-4 text-slate-600 dark:text-slate-400">
+                Quarter
+              </th>
 
-          {quarters.map((q) => (
+              <th className="py-4 text-slate-600 dark:text-slate-400">
+                Revenue
+              </th>
 
-            <tr
-              key={q.quarter}
-              className="border-t border-slate-700 h-14"
-            >
+              <th className="py-4 text-slate-600 dark:text-slate-400">
+                Profit
+              </th>
 
-              <td>{q.quarter}</td>
-
-              <td className="text-center">
-                {q.revenue}
-              </td>
-
-              <td className="text-center text-green-400">
-                {q.profit}
-              </td>
-
-              <td className="text-center">
-                {q.eps}
-              </td>
+              <th className="py-4 text-slate-600 dark:text-slate-400">
+                EPS
+              </th>
 
             </tr>
 
-          ))}
+          </thead>
 
-        </tbody>
+          <tbody>
 
-      </table>
+            {quarters.map((q) => (
+
+              <tr
+                key={q.quarter}
+                className="border-b border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+              >
+
+                <td className="py-4 font-semibold text-slate-900 dark:text-white">
+                  {q.quarter}
+                </td>
+
+                <td className="text-center text-slate-700 dark:text-slate-300">
+                  {q.revenue}
+                </td>
+
+                <td className="text-center font-semibold text-green-500">
+                  {q.profit}
+                </td>
+
+                <td className="text-center text-cyan-600 dark:text-cyan-400 font-semibold">
+                  {q.eps}
+                </td>
+
+              </tr>
+
+            ))}
+
+          </tbody>
+
+        </table>
+
+      </div>
 
     </div>
   );

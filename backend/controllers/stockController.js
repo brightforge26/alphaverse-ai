@@ -1,7 +1,9 @@
+
 const { getStockPrice } = require("../services/twelveDataService");
 
-const getLivePrice = async (req, res) => {
+exports.getLivePrice = async (req, res) => {
   try {
+
     const { symbol } = req.params;
 
     const stock = await getStockPrice(symbol);
@@ -10,16 +12,15 @@ const getLivePrice = async (req, res) => {
       success: true,
       data: stock,
     });
+
   } catch (err) {
-    console.error(err);
+
+    console.log(err);
 
     res.status(500).json({
       success: false,
       message: err.message,
     });
-  }
-};
 
-module.exports = {
-  getLivePrice,
+  }
 };

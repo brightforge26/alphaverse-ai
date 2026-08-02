@@ -3,8 +3,13 @@ import Navbar from "../components/common/Navbar";
 
 function MainLayout({ children }) {
   return (
-    <div className="flex h-screen bg-slate-950 text-white">
-
+    <div
+      style={{
+        background: "var(--bg)",
+        color: "var(--text)",
+      }}
+      className="flex h-screen transition-all duration-300"
+    >
       {/* Sidebar */}
       <div className="w-64 fixed left-0 top-0 h-screen">
         <Sidebar />
@@ -19,7 +24,13 @@ function MainLayout({ children }) {
         </div>
 
         {/* Scrollable Content */}
-        <main className="mt-20 h-[calc(100vh-80px)] overflow-y-auto p-8">
+        <main
+          style={{
+            background: "var(--bg)",
+            color: "var(--text)",
+          }}
+          className="mt-20 h-[calc(100vh-80px)] overflow-y-auto p-8 transition-all duration-300"
+        >
           {children}
         </main>
 

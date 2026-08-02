@@ -19,33 +19,41 @@ const earnings = [
 
 function EarningsCalendar() {
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-
+    <div
+      style={{
+        background: "var(--card)",
+        borderColor: "var(--border)",
+        color: "var(--text)",
+      }}
+      className="border rounded-2xl p-6 transition-all duration-300"
+    >
       <h2 className="text-2xl font-bold mb-5">
         📅 Earnings Calendar
       </h2>
 
       <div className="space-y-4">
-
         {earnings.map((item) => (
-
           <div
             key={item.company}
-            className="flex justify-between bg-slate-800 rounded-xl p-4"
+            style={{
+              background: "var(--card2)",
+            }}
+            className="flex justify-between items-center rounded-xl p-4 transition-all duration-300 hover:scale-[1.02]"
           >
-
-            <span>{item.company}</span>
-
-            <span className="text-cyan-400">
-              {item.date}
+            <span
+              style={{
+                color: "var(--text)",
+              }}
+            >
+              {item.company}
             </span>
 
+            <span className="text-cyan-400 font-semibold">
+              {item.date}
+            </span>
           </div>
-
         ))}
-
       </div>
-
     </div>
   );
 }
